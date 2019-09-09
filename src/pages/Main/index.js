@@ -16,6 +16,22 @@ export default class Main extends Component {
     };
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('repositories')) {
+      this.setState({
+        repositories: JSON.parse(localStorage.getItem('repositories')),
+        loading: false,
+      });
+    }
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem(
+      'repositories',
+      JSON.stringify(nextState.repositories),
+    );
+  }
+
   handleAddRepository = async (e) => {
     e.preventDefault();
     this.setState({ loading: true });
