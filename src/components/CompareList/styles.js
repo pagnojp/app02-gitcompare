@@ -20,7 +20,13 @@ export const Repository = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    button {
+      align-self: flex-end;
+      background: none;
+      border: 0;
+    }
   }
+
   img {
     width: 64px;
   }

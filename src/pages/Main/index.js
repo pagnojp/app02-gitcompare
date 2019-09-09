@@ -25,11 +25,9 @@ export default class Main extends Component {
     }
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    localStorage.setItem(
-      'repositories',
-      JSON.stringify(nextState.repositories),
-    );
+  componentDidUpdate() {
+    const { repositories } = this.state;
+    localStorage.setItem('repositories', JSON.stringify(repositories));
   }
 
   handleAddRepository = async (e) => {
@@ -44,11 +42,24 @@ export default class Main extends Component {
         repositories: [...repositories, repository],
         repositoryError: false,
       });
+      localStorage.setItem(
+        'repositories',
+        JSON.stringify(...repositories, repository),
+      );
     } catch (error) {
       this.setState({ repositoryError: true });
     } finally {
       this.setState({ loading: false });
     }
+  };
+
+  handleRemoveRepository = async (id) => {
+    const { repositories } = this.state;
+    const updatedRepositories = repositories.filter(
+      (repository) => repository.id !== id,
+    );
+    this.setState({ repositories: updatedRepositories });
+    localStorage.setItem('repositories', JSON.stringify(repositories));
   };
 
   render() {
@@ -72,7 +83,10 @@ export default class Main extends Component {
             {loading ? <i className="fa fa-spinner fa-pulse" /> : '+ Add'}
           </button>
         </Form>
-        <CompareList repositories={repositories} />
+        <CompareList
+          repositories={repositories}
+          removeRepository={this.handleRemoveRepository}
+        />
       </Container>
     );
   }
