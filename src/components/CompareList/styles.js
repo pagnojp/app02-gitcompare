@@ -16,7 +16,7 @@ export const Repository = styled.div`
   margin: 0 10px;
 
   header {
-    padding: 30px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,6 +29,7 @@ export const Repository = styled.div`
 
   img {
     width: 64px;
+    padding-top: 10px;
   }
   strong {
     font-size: 24px;
