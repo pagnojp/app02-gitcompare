@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/app02-gitcompare/static/js/main.4f21cbbd.chunk.js",
+    "main.js.map": "/app02-gitcompare/static/js/main.4f21cbbd.chunk.js.map",
+    "runtime~main.js": "/app02-gitcompare/static/js/runtime~main.487b221e.js",
+    "runtime~main.js.map": "/app02-gitcompare/static/js/runtime~main.487b221e.js.map",
+    "static/css/2.9a8e69ff.chunk.css": "/app02-gitcompare/static/css/2.9a8e69ff.chunk.css",
+    "static/js/2.c19bbddc.chunk.js": "/app02-gitcompare/static/js/2.c19bbddc.chunk.js",
+    "static/js/2.c19bbddc.chunk.js.map": "/app02-gitcompare/static/js/2.c19bbddc.chunk.js.map",
+    "index.html": "/app02-gitcompare/index.html",
+    "precache-manifest.aa07c7dbe8e7a51c914a52315a061a27.js": "/app02-gitcompare/precache-manifest.aa07c7dbe8e7a51c914a52315a061a27.js",
+    "service-worker.js": "/app02-gitcompare/service-worker.js",
+    "static/css/2.9a8e69ff.chunk.css.map": "/app02-gitcompare/static/css/2.9a8e69ff.chunk.css.map",
+    "static/media/font-awesome.min.css": "/app02-gitcompare/static/media/fontawesome-webfont.fee66e71.woff"
+  }
+}
