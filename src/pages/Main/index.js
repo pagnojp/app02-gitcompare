@@ -94,7 +94,7 @@ export default class Main extends Component {
         <Form withError={repositoryError} onSubmit={this.handleAddRepository}>
           <input
             type="text"
-            placeholder="user/repo"
+            placeholder="user/repo | facebook/react"
             value={repositoryInput}
             onChange={(e) => this.setState({ repositoryInput: e.target.value })}
           />
