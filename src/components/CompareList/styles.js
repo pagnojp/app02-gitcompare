@@ -4,24 +4,29 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 50px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 `;
 
 export const Repository = styled.div`
-  width: 250px;
+  width: 300px;
   background-color: #ffffff;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  margin: 0 10px;
+  margin: 10px 10px;
 
   header {
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
     button {
-      align-self: flex-end;
       background: none;
       border: 0;
     }
@@ -29,7 +34,7 @@ export const Repository = styled.div`
 
   img {
     width: 64px;
-    padding-top: 10px;
+    padding-top: 20px;
   }
   strong {
     font-size: 24px;

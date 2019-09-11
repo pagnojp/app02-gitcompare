@@ -19,8 +19,8 @@ export default class Main extends Component {
   componentDidMount() {
     if (localStorage.getItem('repositories')) {
       this.setState({
-        repositories: JSON.parse(localStorage.getItem('repositories')),
         loading: false,
+        repositories: JSON.parse(localStorage.getItem('repositories')),
       });
     }
   }
@@ -33,8 +33,8 @@ export default class Main extends Component {
   handleAddRepository = async (e) => {
     e.preventDefault();
     this.setState({ loading: true });
+    const { repositoryInput, repositories } = this.state;
     try {
-      const { repositoryInput, repositories } = this.state;
       const { data: repository } = await api.get(`/repos/${repositoryInput}`);
       repository.lastCommit = moment(repository.pushed_at).fromNow();
       this.setState({
@@ -62,6 +62,25 @@ export default class Main extends Component {
     localStorage.setItem('repositories', JSON.stringify(repositories));
   };
 
+  handleRefreshRepository = async (id) => {
+    const { repositories } = this.state;
+    const repository = repositories.find((repo) => repo.id === id);
+    try {
+      const { data } = await api.get(`/repos/${repository.full_name}`);
+
+      data.lastCommit = moment(data.pushed_at).fromNow();
+
+      this.setState({
+        repositoryError: false,
+        repositoryInput: '',
+        repositories: repositories.map((repo) => (repo.id === data.id ? data : repo)),
+      });
+      await localStorage.setItem('repositories', JSON.stringify(repositories));
+    } catch (err) {
+      this.setState({ repositoryError: true });
+    }
+  };
+
   render() {
     const {
       loading,
@@ -80,11 +99,12 @@ export default class Main extends Component {
             onChange={(e) => this.setState({ repositoryInput: e.target.value })}
           />
           <button type="submit">
-            {loading ? <i className="fa fa-spinner fa-pulse" /> : '+ Add'}
+            {loading ? <i className="fa fa-spinner fa-pulse" /> : 'Add'}
           </button>
         </Form>
         <CompareList
           repositories={repositories}
+          refreshRepository={this.handleRefreshRepository}
           removeRepository={this.handleRemoveRepository}
         />
       </Container>

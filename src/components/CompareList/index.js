@@ -2,30 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Repository } from './styles';
 
-const CompareList = ({ repositories, removeRepository }) => (
+const CompareList = ({ repositories, refreshRepository, removeRepository }) => (
   <Container>
     {repositories.map((repository) => (
       <Repository key={repository.id}>
         <header>
-          <button type="button" onClick={() => removeRepository(repository.id)}>
-            <i className="fa fa-trash fa-lg" title="Remove this repository" />
-          </button>
+          <div>
+            <button
+              type="button"
+              onClick={() => refreshRepository(repository.id)}
+            >
+              <i
+                className="fa fa-refresh fa-lg"
+                title="Refresh repository data"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => removeRepository(repository.id)}
+            >
+              <i className="fa fa-trash fa-lg" title="Remove this repository" />
+            </button>
+          </div>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <strong>{repository.name}</strong>
-          <small>facebook</small>
+          <small>{repository.owner.login}</small>
         </header>
         <ul>
           <li>
-            {repository.stargazers_count} <small>stars</small>
+            {`${repository.stargazers_count}`} <small>stars</small>
           </li>
           <li>
-            {repository.forks_count} <small>forks</small>
+            {`${repository.forks_count}`} <small>forks</small>
           </li>
           <li>
-            {repository.open_issues_count} <small>issues</small>
+            {`${repository.open_issues_count}`} <small>issues</small>
           </li>
           <li>
-            {repository.lastCommit} <small>last commit</small>
+            {`${repository.lastCommit}`} <small>last commit</small>
           </li>
         </ul>
       </Repository>
@@ -49,6 +63,7 @@ CompareList.propTypes = {
     }),
   ).isRequired,
   removeRepository: PropTypes.func.isRequired,
+  refreshRepository: PropTypes.func.isRequired,
 };
 
 export default CompareList;
